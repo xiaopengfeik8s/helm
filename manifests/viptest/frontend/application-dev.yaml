@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dev-viptest-frontend
+  annotations:
+    argocd-image-updater.argoproj.io/frontend.allow-tags: regexp:^main
+    argocd-image-updater.argoproj.io/frontend.helm.image-name: baseapp.image.repository
+    argocd-image-updater.argoproj.io/frontend.helm.image-tag: baseapp.image.tag
+    argocd-image-updater.argoproj.io/image-list: frontend=registry.cn-shanghai.aliyuncs.com/jllt-devops/frontend
+    argocd-image-updater.argoproj.io/update-strategy: latest
+    argocd-image-updater.argoproj.io/write-back-method: git
+spec:
+  destination:
+    namespace: dev-viptest
+    server: https://106.14.45.238:6443
+  project: default
+  source:
+    path: manifests/viptest/frontend
+    repoURL: 'https://github.com/xiaopengfeik8s/helm.git'
+    targetRevision: main
+    helm:
+      valueFiles:
+        - values-dev.yaml
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
