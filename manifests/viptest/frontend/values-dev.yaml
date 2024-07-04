@@ -22,3 +22,10 @@ baseapp:
     httpPort: 80
     targetPort: 80
 
+  resources:
+    limits:
+      cpu: "1"
+      memory: 100Mi
+    requests:
+      cpu: 100m
+      memory: 50Mi

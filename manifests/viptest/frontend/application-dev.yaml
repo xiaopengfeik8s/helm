@@ -12,7 +12,7 @@ metadata:
 spec:
   destination:
     namespace: dev-viptest
-    server: https://106.14.45.238:6443
+    server: https://kubernetes.default.svc
   project: default
   source:
     path: manifests/viptest/frontend
