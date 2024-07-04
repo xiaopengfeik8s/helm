@@ -1,0 +1,29 @@
+# Default values for baseapp.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+baseapp:
+  replicaCount: 1
+  
+  environment: dev  
+  
+  env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: root
+    - name: MYSQL_DATABASE
+      value: users
+
+  
+  image:
+    repository: registry.cn-shanghai.aliyuncs.com/jllt-devops/mysql
+    pullPolicy: IfNotPresent
+    tag: "8.0"
+  
+  nameOverride: "viptest-db"
+  fullnameOverride: "viptest-db"
+  namespaceOverride: "dev-viptest"
+  
+  service:
+    type: ClusterIP
+    httpPort: 3306
+    targetPort: 3306
+

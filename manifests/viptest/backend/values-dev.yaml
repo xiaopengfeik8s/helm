@@ -1,0 +1,24 @@
+# Default values for baseapp.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+baseapp:
+  replicaCount: 1
+  
+  environment: dev  
+  
+
+  
+  image:
+    repository: registry.cn-shanghai.aliyuncs.com/jllt-devops/backend
+    pullPolicy: IfNotPresent
+    tag: "main-dev-aa90d8f"
+  
+  nameOverride: "viptest-backend"
+  fullnameOverride: "viptest-backend"
+  namespaceOverride: "dev-viptest"
+  
+  service:
+    type: ClusterIP
+    httpPort: 80
+    targetPort: 80
+
